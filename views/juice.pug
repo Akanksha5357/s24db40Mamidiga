@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  
+  div.container-fluid
+    div.row
+      -
+        let results = [
+          { juice_flavor: 'Apple', juice_brand: 'AppyFizz', juice_price: 2.5 },
+          { juice_flavor: 'Mango', juice_brand: 'Maaza', juice_price: 2.0 },
+          { juice_flavor: 'Orange', juice_brand: 'Fanta', juice_price: 3.0 }
+        ]
+        
+      each juice,index in results
+        .col-sm-2 
+        div.col-sm-2(onclick=`buy(${index})`)
+        
+          p juice Flavor: #{juice.juice_flavor}
+          p Brand: #{juice.juice_brandc}
+          p Price: $#{juice.juice_price.toFixed(2)}
+
+  a(href="/") Back to index
+
+    script. 
+        function buy(index) {
+            alert(`You purchased item ${index}`);
+        }
+        

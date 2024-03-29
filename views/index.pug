@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to my page #{title} 
+  p This is Akanksha Mamidiga
+  button(type="button", class="btn btn-secondary", onclick="double()") Iam a button
+  br
+  div#double Up the amount
+  br
+  a(href='/juice') View Search Results
+  
+  //- Script block
+  script.
+    // JavaScript code
+    var value = 0;
+    var power = 1;
+
+    function double() {
+      value += 1;
+      power *= 2;
+      document.getElementById("double").innerText = "Two to the power " + value + " is " + power;
+    }
+    
