@@ -57,3 +57,34 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function(){
 console.log("Connection to DB succeeded")});
+// We can seed the collection if needed on
+
+async function recreateDB(){
+  // Delete everything
+  await juice.deleteMany();
+  
+  let instance1 = new juice({juice_flavor: 'Apple', juice_brand: 'AppyFizz', juice_price: 2.5 });
+  instance1.save().then(doc=>{
+  console.log("First object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  
+  
+  let instance2 = new juice({juice_flavor: 'Mango', juice_brand: 'Maaza', juice_price: 2.0});
+  instance2.save().then(doc=>{
+  console.log("Second object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  
+  
+  let instance3 = new juice({juice_flavor: 'Orange', juice_brand: 'Fanta', juice_price: 3.0});
+  instance3.save().then(doc=>{
+  console.log("Third object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  }
+  let reseed = true;
+  if (reseed) {recreateDB();}
