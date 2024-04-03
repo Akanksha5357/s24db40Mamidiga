@@ -32,5 +32,17 @@ exports.juice_list = async function(req, res) {
     res.send(`{"error": ${err}}`);
     } 
    };
+     
+     
+    exports.toys_view_all_Page = async function(req, res) {
+        try{
+        thejuice = await juice.find();
+        res.render('juice', { title: 'toys Search Results', results: thejuice });
+        }
+        catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+        }
+        };
    
  
