@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var juiceRouter = require('./routes/juice'); //juice endpoint added
 var gridRouter = require('./routes/grid'); //grid endpoint added
 var pickRouter = require('./routes/pick');//pick endpoint added
+var resourceRouter = require('./routes/resource');//resource endpoint added
 
 
 var app = express();
@@ -28,6 +29,8 @@ app.use('/users', usersRouter);
 app.use('/juice', juiceRouter); //juice endpoint added
 app.use('/grid', gridRouter); //grid endpoint added
 app.use('/pick', pickRouter); //pick endpoint added
+app.use('/resource', pickRouter); //resource endpoint added
+
 
 var juice = require("./models/juice");
 require('dotenv').config();
