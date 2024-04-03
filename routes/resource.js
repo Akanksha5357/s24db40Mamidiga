@@ -12,7 +12,7 @@ router.post('/juice', juice_controller.juice_create_post);
 // DELETE request to delete juice.
 router.delete('/juice/:id', juice_controller.juice_delete);
 // PUT request to update juice.
-router.put('/juice/:id', food_controller.food_update_put);
+router.put('/juice/:id', juice_controller.juice_update_put);
 // GET request for one juice.
 router.get('/juice/:id', juice_controller.juice_detail);
 // GET request for list of all juice items.
