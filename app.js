@@ -29,7 +29,7 @@ app.use('/users', usersRouter);
 app.use('/juice', juiceRouter); //juice endpoint added
 app.use('/grid', gridRouter); //grid endpoint added
 app.use('/pick', pickRouter); //pick endpoint added
-app.use('/resource', pickRouter); //resource endpoint added
+app.use('/resource', resourceRouter); //resource endpoint added
 
 
 var juice = require("./models/juice");
