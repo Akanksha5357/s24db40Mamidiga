@@ -6,11 +6,7 @@ block content
   div.container-fluid
     div.row
       -
-        let results = [
-          { juice_flavor: 'Apple', juice_brand: 'AppyFizz', juice_price: 2.5 },
-          { juice_flavor: 'Mango', juice_brand: 'Maaza', juice_price: 2.0 },
-          { juice_flavor: 'Orange', juice_brand: 'Fanta', juice_price: 3.0 }
-        ]
+        let juice = results
         
       each juice,index in results
         .col-sm-2 
@@ -26,4 +22,12 @@ block content
         function buy(index) {
             alert(`You purchased item ${index}`);
         }
+
+var express = require('express');
+const juice_controlers= require('../controllers/juice');
+var router = express.Router();
+/* GET juice  */
+router.get('/',juice_controlers.juice_view_all_Page );
+module.exports = router;
         
+
