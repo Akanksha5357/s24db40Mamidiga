@@ -44,4 +44,25 @@ exports.juice_view_all_Page = async function (req, res) {
     }
 };
 
+// Handle juice create on POST.
+exports.juice_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new juice();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    document.juice_flavor = req.body.juice_flavor;
+    document.juice_brand = req.body.juice_brand;
+    document.juice_price = req.body.juice_price;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
+
 
