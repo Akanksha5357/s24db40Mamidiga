@@ -94,7 +94,60 @@ exports.juice_create_post = async function(req, res) {
     }
     };
 
+    // Handle a show one view with id specified by query
+exports.juice_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await juice.findById( req.query.id)
+    res.render('juicedetail',
+    { title: 'juice Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
+    // Handle building the view for creating a juice.
+    // No body, no in path parameter, no query.
+    // Does not need to be async
+    exports.juice_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('juicecreate', { title: 'juice Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle building the view for updating a juice.
+// query provides the id
+exports.juice_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await juice.findById(req.query.id)
+    res.render('juiceupdate', { title: 'juice Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+    
+    // Handle a delete one view with id from query
+exports.juice_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await juice.findById(req.query.id)
+    res.render('juicedelete', { title: 'juice Delete', toShow:
+    result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
     
     
-
-

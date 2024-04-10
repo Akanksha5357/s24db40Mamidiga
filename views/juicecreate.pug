@@ -1,0 +1,33 @@
+extends layout
+ 
+block content
+  h1= title
+  form(id='juiceForm', action="/resource/juice", method="POST")
+    div.form-group
+      label.juiceAttr(for='juice_flavor') Juice Flavor
+      input.ATTR#juice_flavor(type='text', name='juice_flavor')
+    div.form-group
+      label.juiceAttr(for='juice_brand') Juice Brand
+      input.ATTR#juice_brand(type='text', name='juice_brand')
+    div.form-group
+      label.juiceAttr(for='juice_price') Juice Price
+      input.ATTR#juice_price(type='number', name='juice_price')
+    input.SUBMIT(type="submit")
+ 
+  script.
+    document.forms['juiceForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded");
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error );
+      });
+    });

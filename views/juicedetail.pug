@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  - let juiceid = toShow._id
+  - let juice_flavor = toShow.juice_flavor
+  - let juice_brand = toShow.juice_brand
+  - let juice_price = toShow.juice_price
+  div
+    div.row
+      div(class='juiceAttr mr-3') Juice ID is:
+      div #{juiceid}
+    div.row
+      div(class='juiceAttr mr-3') Juice Flavor is:
+      div #{juice_flavor}
+    div.row
+      div(class='juiceAttr mr-3') Juice Brand is:
+      div #{juice_brand}
+    div.row
+      div(class='juiceAttr mr-3') Juice Price is:
+      div #{juice_price}
