@@ -3,21 +3,51 @@ var juice = require('../models/juice');
 exports.juice_list = function (req, res) {
     res.send('NOT IMPLEMENTED: juice list');
 };
-// for a specific juice.
-exports.juice_detail = function (req, res) {
-    res.send('NOT IMPLEMENTED: juice detail: ' + req.params.id);
-};
+
 // Handle juice create on POST.
-exports.juice_create_post = function (req, res) {
-    res.send('NOT IMPLEMENTED: food create POST');
+//for a specific juice.
+exports.juice_detail = async function(req, res) {
+console.log("detail" + req.params.id)
+try {
+result = await juice.findById( req.params.id)
+res.send(result)
+} catch (error) {
+res.status(500)
+res.send(`{"error": document for id ${req.params.id} not found`);
+}
 };
-// Handle juice delete from on DELETE.
-exports.juice_delete = function (req, res) {
-    res.send('NOT IMPLEMENTED: juice delete DELETE ' + req.params.id);
-};
+// Handle juice delete on DELETE.
+exports.juice_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await juice.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
 // Handle juice update form on PUT.
-exports.juice_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: juice update PUT' + req.params.id);
+exports.juice_update_put = async function(req, res) {
+console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+try {
+let toUpdate = await juice.findById( req.params.id)
+// Do updates of properties
+if(req.body.juice_type)
+toUpdate.juice_flavor = req.body.juice_flavor;
+if(req.body.juice_brand) toUpdate.juice_brand = req.body.juice_brand;
+if(req.body.juice_price) toUpdate.juice_price= req.body.juice_price;
+let result = await toUpdate.save();
+console.log("Sucess " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+}
 };
 
 
@@ -63,6 +93,8 @@ exports.juice_create_post = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
+
+    
     
 
 
