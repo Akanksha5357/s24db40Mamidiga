@@ -2,25 +2,23 @@ extends layout
 
 block content
   h1= title
-  
-  div.container-fluid
-    div.row
-      -
-        let juice = results
-        
-      each juice,index in results
-        .col-sm-2 
-        div.col-sm-2(onclick=`buy(${index})`)
-        
-          p juice Flavor: #{juice.juice_flavor}
-          p Brand: #{juice.juice_brand}
-          p Price: $#{juice.juice_price.toFixed(2)}
 
-  a(href="/") Back to index
+  - let items = results;
+  each item in items
+    - let juice_flavor = `dispatch("/juice/update?id=${item._id}")`
+    - let juice_brand = `dispatch("/juice/detail?id=${item._id}")`
+    - let juice_price = `dispatch("/juice/delete?id=${item._id}")`
 
-    script. 
-        function buy(index) {
-            alert(`You purchased item ${index}`);
-        }
+    div
+      p Flavor - #{item.juice_flavor}
+      p Brand - #{item.juice_brand}
+      p Price - #{item.juice_price}
+      button.btn.btn-primary.ml-1(onclick=juiceupdate) Update
+      br
+      br
 
+  script.
+    function dispatch(path){
+      window.location.href = path;
+    }
 
