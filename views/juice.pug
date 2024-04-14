@@ -3,6 +3,11 @@ extends layout
 block content
   h1= title
 
+    br
+    a.btn.btn-primary(href="/juice/create") Create Juice 
+    br
+
+
   - let items = results;
   each item in items
     - let juice_flavor = `dispatch("/juice/update?id=${item._id}")`
@@ -14,6 +19,8 @@ block content
       p Brand - #{item.juice_brand}
       p Price - #{item.juice_price}
       button.btn.btn-primary.ml-1(onclick=juiceupdate) Update
+      button.btn.btn-secondary.ml-1(onclick=vehicledetail) Detail
+      button.btn.btn-danger.ml-1(onclick=vehicledelete) Delete
       br
       br
 
